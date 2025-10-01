@@ -22,4 +22,4 @@ window.setInterval(() => {
     s_hand.innerText = s_hand_ang;
     m_hand.innerText = m_hand_ang;
     h_hand.innerText = h_hand_ang;
-}, 800);
+}, 500);

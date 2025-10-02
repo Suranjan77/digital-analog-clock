@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 .container {
     display: flex;
     height: 100vh;
@@ -8,6 +12,44 @@
 }
 
 #clock {
+    position: relative;
     background-color: aqua;
     border-radius: 50%;
+    padding: 20px;
+}
+
+#num_12, #num_3, #num_6, #num_9 {
+    position: absolute;
+    font-size: 2em;
+    font-weight: bolder;
+}
+
+#second, #hour, #minute {
+    position: absolute;
+    transform: rotate(270deg);
+    transform-origin: left;
+}
+
+#second {
+    height: 3px;
+    width: 42%;
+    top: 50%;
+    left: 50%;
+    background-color: red;
+}
+
+#hour {
+    height: 5px;
+    width: 42%;
+    top: 50%;
+    left: 50%;
+    background-color: green;
+}
+
+#minute {
+    height: 8px;
+    width: 42%;
+    top: 50%;
+    left: 50%;
+    background-color: blue;
 }

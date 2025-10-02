@@ -18,13 +18,27 @@ function draw_clock_circle() {
     const win_width = window.innerWidth;
     const win_height = window.innerHeight;
 
-    const circle_diameter = Math.floor(Math.min(win_width, win_height) * 0.8) + "px";
-    console.log(circle_diameter);
+    const circle_diameter = Math.floor(Math.min(win_width, win_height) * 0.8);
 
     const clock_item = document.getElementById("clock");
+    clock_item.setAttribute("style", `width: ${circle_diameter}px !important; height: ${circle_diameter}px !important;`);
 
-    clock_item.setAttribute("style", `width: ${circle_diameter} !important; height: ${circle_diameter} !important`);
-    console.log("circle diameter: ", clock_item.style.height);
+    const num_12 = document.getElementById("num_12");
+    const num_3 = document.getElementById("num_3");
+    const num_6 = document.getElementById("num_6");
+    const num_9 = document.getElementById("num_9");
+
+    const clock_style = window.getComputedStyle(clock_item);
+    const clock_padding = parseInt(clock_style.getPropertyValue("padding"));
+    console.log(clock_padding);
+
+    const font_size = parseInt(window.getComputedStyle(document.body).getPropertyValue('font-size').match(/\d+/)[0]);
+    console.log(font_size);
+
+    num_12.setAttribute("style", `left: ${Math.floor(circle_diameter / 2)}px !important;`);
+    num_3.setAttribute("style", `top: ${Math.floor(circle_diameter / 2)}px !important; left: ${circle_diameter - clock_padding - font_size}px !important;`);
+    num_6.setAttribute("style", `top: ${circle_diameter - clock_padding - font_size}px !important; left: ${Math.floor(circle_diameter / 2)}px !important;`);
+    num_9.setAttribute("style", `top: ${Math.floor(circle_diameter / 2)}px !important;`);
 }
 
 window.onload = () => {
@@ -42,5 +56,13 @@ window.onload = () => {
         s_hand.innerText = s_hand_ang;
         m_hand.innerText = m_hand_ang;
         h_hand.innerText = h_hand_ang;
+
+        const second = document.getElementById("second");
+        const hour = document.getElementById("hour");
+        const minute = document.getElementById("minute");
+
+        second.setAttribute("style", `transform: rotate(${Math.max(s_hand_ang + 270, 360)}deg) !important;`);
+        hour.setAttribute("style", `transform: rotate(${Math.max(h_hand_ang + 270, 360)}deg) !important;`);
+        minute.setAttribute("style", `transform: rotate(${Math.max(m_hand_ang + 270, 360)}deg) !important;`);
     }, 500);
 };

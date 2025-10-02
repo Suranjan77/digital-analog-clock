@@ -14,7 +14,7 @@ function calculate_starting_angles() {
     starting_angles.innerText = h_hand_ang + " : " + m_hand_ang + " : " + s_hand_ang;
 }
 
-function draw_clock_circle() {
+function draw_clock() {
     const win_width = window.innerWidth;
     const win_height = window.innerHeight;
 
@@ -30,22 +30,24 @@ function draw_clock_circle() {
 
     const clock_style = window.getComputedStyle(clock_item);
     const clock_padding = parseInt(clock_style.getPropertyValue("padding"));
-    console.log(clock_padding);
 
     const font_size = parseInt(window.getComputedStyle(document.body).getPropertyValue('font-size').match(/\d+/)[0]);
-    console.log(font_size);
 
-    num_12.setAttribute("style", `left: ${Math.floor(circle_diameter / 2)}px !important;`);
-    num_3.setAttribute("style", `top: ${Math.floor(circle_diameter / 2)}px !important; left: ${circle_diameter - clock_padding - font_size}px !important;`);
-    num_6.setAttribute("style", `top: ${circle_diameter - clock_padding - font_size}px !important; left: ${Math.floor(circle_diameter / 2)}px !important;`);
-    num_9.setAttribute("style", `top: ${Math.floor(circle_diameter / 2)}px !important;`);
+    console.log("Clock padding: " + clock_padding);
+    console.log("Font size: " + font_size);
+    console.log("Offset height: " + num_6.offsetHeight);
+
+    num_12.setAttribute("style", `left: ${Math.floor(circle_diameter / 2) - num_12.offsetWidth / 2}px !important;`);
+    num_3.setAttribute("style", `top: ${Math.floor(circle_diameter / 2) - num_3.offsetHeight / 2}px !important; left: ${circle_diameter - clock_padding - num_3.offsetWidth}px !important;`);
+    num_6.setAttribute("style", `top: ${circle_diameter - clock_padding - num_6.offsetHeight}px !important; left: ${Math.floor(circle_diameter / 2) - num_6.offsetWidth / 2}px !important;`);
+    num_9.setAttribute("style", `top: ${Math.floor(circle_diameter / 2) - num_9.offsetHeight / 2}px !important;`);
 }
 
 window.onload = () => {
     calculate_starting_angles();
-    draw_clock_circle();
+    draw_clock();
 
-    window.onresize = () => draw_clock_circle();
+    window.onresize = () => draw_clock();
 
     const s_hand = document.getElementById("s-hand");
     const m_hand = document.getElementById("m-hand");
@@ -64,5 +66,5 @@ window.onload = () => {
         second.setAttribute("style", `transform: rotate(${s_hand_ang + 270}deg) !important;`);
         hour.setAttribute("style", `transform: rotate(${h_hand_ang + 270}deg) !important;`);
         minute.setAttribute("style", `transform: rotate(${m_hand_ang + 270}deg) !important;`);
-    }, 500);
+    }, 1000);
 };

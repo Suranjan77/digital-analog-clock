@@ -61,8 +61,8 @@ window.onload = () => {
         const hour = document.getElementById("hour");
         const minute = document.getElementById("minute");
 
-        second.setAttribute("style", `transform: rotate(${Math.max(s_hand_ang + 270, 360)}deg) !important;`);
-        hour.setAttribute("style", `transform: rotate(${Math.max(h_hand_ang + 270, 360)}deg) !important;`);
-        minute.setAttribute("style", `transform: rotate(${Math.max(m_hand_ang + 270, 360)}deg) !important;`);
+        second.setAttribute("style", `transform: rotate(${s_hand_ang + 270}deg) !important;`);
+        hour.setAttribute("style", `transform: rotate(${h_hand_ang + 270}deg) !important;`);
+        minute.setAttribute("style", `transform: rotate(${m_hand_ang + 270}deg) !important;`);
     }, 500);
 };
